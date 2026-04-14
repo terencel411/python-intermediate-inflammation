@@ -61,9 +61,9 @@ jobs:
       run: |
         python3 -m pytest --cov=inflammation.models --cov-report term-missing tests/test_models.py
     
-    - name: Intentional exit
-      run: |
-        exit 1
+    # - name: Intentional exit
+    #   run: |
+    #     exit 1
 
     - name: Print message if we don't fail
       run: echo Should not get here
