@@ -1,7 +1,7 @@
 name: second
 
 # when does this github action run?
-on: push
+on: workflow_call
 
 # define a single job for now (can add more)
 jobs: 
