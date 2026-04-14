@@ -16,7 +16,7 @@ def main(args):
     InFiles = args.infiles
     if not isinstance(InFiles, list):
         InFiles = [args.infiles]
-
+    
     for filename in InFiles:
         inflammation_data = models.load_csv(filename)
 
@@ -24,6 +24,8 @@ def main(args):
             'average': models.daily_mean(inflammation_data), 
             'max': models.daily_max(inflammation_data), 
             'min': models.daily_min(inflammation_data)}
+
+        # models.daily_mean(1)
 
         views.visualize(filename, view_data)
 
