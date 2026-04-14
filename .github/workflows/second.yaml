@@ -1,4 +1,4 @@
-name: CI
+name: second
 
 # when does this github action run?
 on: push

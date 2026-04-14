@@ -61,11 +61,11 @@ jobs:
       run: |
          python3 -m pytest --cov=inflammation.models --cov-report term-missing tests/test_models.py
   
-    build_workflow_one:
-      uses:
-        ./.github/workflows/first.yaml
+  build_workflow_one:
+    uses:
+      ./.github/workflows/first.yaml
 
-    build_workflow_two:
-      uses:
-        ./.github/workflows/second.yaml
+  build_workflow_two:
+    uses:
+      ./.github/workflows/second.yaml
     
