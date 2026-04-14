@@ -70,7 +70,7 @@ jobs:
 
   build_workflow_one:
     strategy:
-      fail-fast: false
+      fail-fast: true
       
     uses:
       ./.github/workflows/first.yaml
