@@ -83,3 +83,8 @@ def daily_min(data):
 
 # def test_func3(data: np.ndarray) -> Optional[str]:
 #     return None if data == [0] else "A"
+
+def patient_normalise(data):
+    """Normalise patient data from a 2D inflammation data array."""
+    max = np.max(data, axis=0)
+    return data / max[:, np.newaxis]
