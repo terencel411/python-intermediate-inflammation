@@ -28,8 +28,8 @@ jobs:
 
     - name: Test with PyTest
       run: |
-         python3 -m pytest --cov=inflammation.models --cov-report term-missing tests/test_models.py
-         python3 -m pytest --cov=inflammation.models --cov-report term-missing tests/test_patient.py
+        python3 -m pytest --cov=inflammation.models --cov-report term-missing tests/test_models.py
+        python3 -m pytest --cov=inflammation.models --cov-report term-missing tests/test_patient.py
 
   build_matrix:
     
@@ -50,7 +50,7 @@ jobs:
     - name: Set up python version ${{ matrix.python-version }}
       uses: actions/setup-python@v6
       with:
-        python-version: ${{ matrix.python-versionn }}
+        python-version: ${{ matrix.python-version }}
 
     - name: Install python dependencies
       run: |
@@ -59,8 +59,15 @@ jobs:
 
     - name: Test with PyTest
       run: |
-         python3 -m pytest --cov=inflammation.models --cov-report term-missing tests/test_models.py
-  
+        python3 -m pytest --cov=inflammation.models --cov-report term-missing tests/test_models.py
+    
+    - name: Intentional exit
+      run: |
+        exit 1
+
+    - name: Print message if we don't fail
+      run: echo Should not get here
+
   build_workflow_one:
     strategy:
       fail-fast: false
