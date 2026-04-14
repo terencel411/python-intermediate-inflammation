@@ -1,0 +1,17 @@
+name: first
+
+# when does this github action run?
+on: workflow_call
+
+# define a single job for now (can add more)
+jobs: 
+  build:
+    
+    # can also specify the OS to run the test on
+    runs-on: ubuntu-22.04
+
+    # a job has a series of steps
+    steps:
+
+    - name: Sleep for 10 seconds
+      run: sleep 10

@@ -1,0 +1,80 @@
+name: CI
+
+# when does this github action run?
+on: push
+
+# define a single job for now (can add more)
+jobs: 
+  build:
+    
+    # can also specify the OS to run the test on
+    runs-on: ubuntu-22.04
+
+    # a job has a series of steps
+    steps:
+
+    - name: Checkout respository
+      uses: actions/checkout@v5
+
+    - name: Set up python version
+      uses: actions/setup-python@v6
+      with:
+        python-version: "3.10.12"
+
+    - name: Install python dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        python3 -m pip install -r requirements.txt .
+
+    - name: Test with PyTest
+      run: |
+        python3 -m pytest --cov=inflammation.models --cov-report term-missing tests/test_models.py
+        python3 -m pytest --cov=inflammation.models --cov-report term-missing tests/test_patient.py
+
+  build_matrix:
+    
+    # specify the build matrix
+    strategy:
+      matrix:
+        python-version: ["3.10.12", "3.11", "3.12"]
+
+    # can also specify the OS to run the test on
+    runs-on: ubuntu-22.04
+
+    # a job has a series of steps
+    steps:
+
+    - name: Checkout respository
+      uses: actions/checkout@v5
+
+    - name: Set up python version ${{ matrix.python-version }}
+      uses: actions/setup-python@v6
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install python dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        python3 -m pip install -r requirements.txt .
+
+    - name: Test with PyTest
+      run: |
+        python3 -m pytest --cov=inflammation.models --cov-report term-missing tests/test_models.py
+    
+    - name: Intentional exit
+      run: |
+        exit 1
+
+    - name: Print message if we don't fail
+      run: echo Should not get here
+
+  build_workflow_one:
+    needs: build_matrix
+      
+    uses:
+      ./.github/workflows/first.yaml
+
+  build_workflow_two:
+    uses:
+      ./.github/workflows/second.yaml
+    
