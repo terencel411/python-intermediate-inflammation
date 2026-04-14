@@ -50,7 +50,7 @@ jobs:
     - name: Set up python version ${{ matrix.python-version }}
       uses: actions/setup-python@v6
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: ${{ matrix.python-versionn }}
 
     - name: Install python dependencies
       run: |
@@ -62,6 +62,9 @@ jobs:
          python3 -m pytest --cov=inflammation.models --cov-report term-missing tests/test_models.py
   
   build_workflow_one:
+    strategy:
+      fail-fast: false
+      
     uses:
       ./.github/workflows/first.yaml
 
