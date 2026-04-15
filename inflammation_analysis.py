@@ -25,7 +25,21 @@ def main(args):
             'max': models.daily_max(inflammation_data), 
             'min': models.daily_min(inflammation_data)}
 
-        # models.daily_mean(1)
+        patient_data = models.daily_mean(inflammation_data)
+
+        diff = 0
+        day = 0
+        previous_patient = 0
+        for i in range(len(patient_data)):
+            patient_diff = patient_data[i] - previous_patient
+            if patient_diff > diff:
+                diff = patient_diff
+                day = i
+            
+            previous_patient = patient_data[i]
+        
+        print(f"Patient Average: {patient_data}")
+        print(f"Day on which they become worse on average: {day}")
 
         views.visualize(filename, view_data)
 

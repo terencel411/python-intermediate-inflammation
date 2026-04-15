@@ -17,3 +17,21 @@ Several tests have been implemented already, some of which are currently failing
 These failing tests set out the requirements for the additional code to be implemented during the workshop.
 
 The tests should be run using `pytest`, which will be introduced during the workshop.
+
+# Software Development as a Process
+
+## Software Requirements
+
+### Business Requirements
+
+BR1: To figure out when to proactively do clinical intervention and resource allocation after first day of showing adverse symptoms (not just symptoms, but it shold be a drastic change)
+
+### Stakeholder Requirements
+
+SR: Implement a process to figure out how long it takes for the patient to get worse starting from day 1
+
+### Solution Requirements
+
+SR1: Add logic in the models.py to find out for a patient on which day the change in inflammation is the highest (difference in inflammation values)
+
+SR2: Add logic in the models.py to find out for a list of patients, what is the average?

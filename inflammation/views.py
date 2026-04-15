@@ -18,7 +18,8 @@ def visualize(filename, data_dict):
         axes = fig.add_subplot(1, num_plots, i + 1)
 
         axes.set_ylabel(name)
-        axes.plot(data)
+        axes.set_xticks([i for i in range(0, 40, 1)])
+        axes.plot(data, marker='s')
 
     fig.tight_layout()
     
